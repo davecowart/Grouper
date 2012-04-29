@@ -6,7 +6,11 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'haml-rails'
+gem 'rails3-generators'
+gem 'authlogic'
+gem 'simple_form'
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +25,17 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :test, :development do
+  gem 'autotest'
+  gem 'autotest-rails'
+  gem 'autotest-growl'
+  gem 'rspec'
+  gem 'shoulda'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'mocha'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
