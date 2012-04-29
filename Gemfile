@@ -11,6 +11,7 @@ gem 'rails3-generators'
 gem 'authlogic'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
