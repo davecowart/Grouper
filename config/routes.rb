@@ -1,5 +1,5 @@
 Grouper::Application.routes.draw do
-  resources :user_sessions, :users, :groups
+  resources :user_sessions, :users, :groups, :memberships
 
   resource :account, :controller => 'users'
 

@@ -9,6 +9,9 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    if (current_user_session)
+      @membership = @group.memberships.find_by_user_id(current_user.id)
+    end
   end
 
   def new
