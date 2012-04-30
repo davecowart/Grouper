@@ -1,0 +1,6 @@
+= simple_form_for @user_session, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :email
+  = f.input :password
+  = f.check_box :remember_me
+  .form-actions
+    = f.submit "Login"

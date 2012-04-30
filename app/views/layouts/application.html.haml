@@ -28,7 +28,13 @@
               %li= link_to "Link 1", "/path1"
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
-
+            - if current_user
+              = link_to "My Account", account_path
+              = link_to "Sign Out", user_session_path(current_user), :method => :delete
+            - else
+              = link_to "Sign In", new_user_session_path
+              = link_to "Register", new_account_path
+              
     .container-fluid
 
       .row-fluid

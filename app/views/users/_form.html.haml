@@ -1,0 +1,10 @@
+= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :password, :required => true
+  = f.input :password_confirmation, :required => true
+  = f.input :gender, :collection => [['Female', 'f'], ['Male', 'm']], :as => :radio_buttons
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
