@@ -7,7 +7,6 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 gem 'haml-rails'
-gem 'rails3-generators'
 gem 'authlogic'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
