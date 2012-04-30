@@ -15,8 +15,8 @@ describe Group do
       group.update_slug
       group.slug.should eq("test_name")
     end
-    if "is called on save" do
-      group = Group.new({:name => "Test Name"})
+    it "is called on save" do
+      group = Group.new({:name => "Test Name", :slug => "wat"})
       group.save
       group.slug.should eq("test_name")
     end
