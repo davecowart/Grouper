@@ -9,9 +9,9 @@ class Group < ActiveRecord::Base
 
   attr_accessible :name, :parent_id, :slug
 
-  before_save :update_slug
+  before_validation :update_slug
 
   def update_slug
-    self.slug = name.gsub(' ','').underscore
+    self.slug = name.gsub(' ','').underscore if name != nil
   end
 end

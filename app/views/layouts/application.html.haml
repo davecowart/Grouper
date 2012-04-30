@@ -46,6 +46,10 @@
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
         .span9
+          - if flash[:error]
+            %p.error= flash[:error]
+          - if flash[:notice]
+            %p.error= flash[:notice]
           = yield
     
       %footer

@@ -1,24 +1,6 @@
 - model_class = Group.new.class
 %h1=t '.title', :default => model_class.model_name.human.pluralize
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:slug)
-      %th= model_class.human_attribute_name(:parent_id)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td= link_to group.id, group_path(group)
-        %td= group.name
-        %td= group.slug
-        %td= group.parent_id
-        %td=l group.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_group_path(group), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), group_path(group), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
-
-= link_to t('.new', :default => t("helpers.links.new")), new_group_path, :class => 'btn btn-primary'
+- @groups.each do |group|
+  .group
+    %h3=group.name
+    = link_to "View", group_path(group)

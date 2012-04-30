@@ -1,4 +1,12 @@
 class GroupsController < ApplicationController
+  def index
+    if current_user_session
+      @groups = current_user.groups
+    else
+      redirect_to root_path
+    end
+  end
+
   def show
     @group = Group.find(params[:id])
   end
@@ -9,12 +17,19 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    @group.update_slug
-    if @group.save
-      flash[:notice] = "Group was created successfully"
-      redirect_to group_path(@group)
-    else
-      render :action => :new
+    Membership.transaction do
+      if @group.save
+        membership = Membership.new({:user => current_user, :group => @group})
+        if !membership.save
+          flash[:notice] = "Something went wrong"
+          render :action => :new
+          raise ActiveRecord::Rollback
+        end
+        flash[:notice] = "Group was created successfully"
+        redirect_to group_path(@group)
+      else
+        render :action => :new
+      end
     end
   end
 
