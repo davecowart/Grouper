@@ -6,4 +6,10 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name, :slug
 
   attr_accessible :name, :parent_id, :slug
+
+  before_save :update_slug
+
+  def update_slug
+    self.slug = name.gsub(' ','').underscore
+  end
 end
