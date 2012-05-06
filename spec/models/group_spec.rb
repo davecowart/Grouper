@@ -10,11 +10,6 @@ describe Group do
   it {should validate_uniqueness_of(:slug)}
 
   describe ".update_slug" do
-    it "updates the slug to match the name" do
-      group = Group.new({:name => "Test Name"})
-      group.update_slug
-      group.slug.should eq("test_name")
-    end
     it "is called on save" do
       group = Group.new({:name => "Test Name", :slug => "wat"})
       group.save

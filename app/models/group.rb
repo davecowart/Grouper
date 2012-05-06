@@ -11,7 +11,9 @@ class Group < ActiveRecord::Base
 
   before_validation :update_slug
 
+private
+
   def update_slug
-    self.slug = name.gsub(' ','').underscore if name != nil
+    self.slug = name.gsub(' ','').underscore unless name.nil?
   end
 end
