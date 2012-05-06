@@ -25,6 +25,7 @@ class GroupsController < ApplicationController
     Membership.transaction do
       if @group.save
         membership = Membership.new({:user => current_user, :group => @group})
+        membership.role_id = Role.find_by_name("GroupAdmin").id
         if !membership.save
           flash[:notice] = "Something went wrong"
           render :action => :new

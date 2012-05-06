@@ -14,12 +14,13 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = Membership.new
-    @membership.group_id = params[:group_id]
-    @membership.user_id = current_user.id
-    if @membership.save
+    membership = Membership.new
+    membership.group_id = params[:group_id]
+    membership.user_id = current_user.id
+    membership.role_id = Role.find_by_name("User").id
+    if membership.save
       flash[:notice] = "Successfully joined the group"
-      redirect_to group_path(@membership.group_id)
+      redirect_to group_path(membership.group_id)
     else
       render :action => :new
     end

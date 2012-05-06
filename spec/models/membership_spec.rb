@@ -6,6 +6,7 @@ describe Membership do
   end
   it {should validate_presence_of(:group_id)}
   it {should validate_presence_of(:user_id)}
+  it {should validate_presence_of(:role_id)}
   it "should validate uniqueness of user_id and group_id" do
     first = Membership.first
     second = Membership.new({:group_id => first.group_id, :user_id => first.user_id})
