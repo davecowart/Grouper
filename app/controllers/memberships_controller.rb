@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  before_filter :authenticate
+
   def index
     @memberships = Membership.where(:user_id => current_user.id)
   end
