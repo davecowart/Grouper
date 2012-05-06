@@ -6,4 +6,9 @@ class Role < ActiveRecord::Base
 
   #TODO: create a scoped association by group
   attr_accessible :name, :rank
+
+
+  def self.find_by_membership(group_id, user_id)
+    Membership.where(user_id: user_id, group_id: group_id).first.role.rank >= 10
+  end
 end

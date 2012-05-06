@@ -7,8 +7,7 @@
   - else
     = link_to "Join group", {:controller => "memberships", :action => "create", :group_id => @group.id}, {:method => :post, :class => 'btn'}
 
-- if current_user_session
+- if is_group_admin(@group.id)
   .form-actions
-    = link_to t('.back', :default => t("helpers.links.back")), groups_path, :class => 'btn'
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_group_path(@group), :class => 'btn'
     = link_to t('.destroy', :default => t("helpers.links.destroy")), group_path(@group), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

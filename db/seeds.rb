@@ -5,4 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Role.create([{name: "GroupAdmin", rank: 10}, {name: "User", rank: 5}, {name: "Guest", rank: 1}])
+Role.create([{name: "Admin", rank: 15}, {name: "GroupAdmin", rank: 10}, {name: "User", rank: 5}, {name: "Guest", rank: 1}])
