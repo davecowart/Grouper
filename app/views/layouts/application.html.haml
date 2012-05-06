@@ -25,8 +25,9 @@
           %a.brand(href="#") Grouper
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Create Group", new_group_path
-              %li= link_to "My Groups", groups_path
+              - if current_user
+                %li= link_to "Create Group", new_group_path
+                %li= link_to "My Groups", groups_path
               %li= link_to "Link 3", "/path3"
             - if current_user
               = link_to "My Account", account_path
