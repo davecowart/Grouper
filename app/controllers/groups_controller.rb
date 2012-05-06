@@ -1,10 +1,6 @@
 class GroupsController < ApplicationController
   def index
-    if current_user_session
-      @groups = current_user.groups
-    else
-      redirect_to root_path
-    end
+    @groups = Group.all
   end
 
   def show

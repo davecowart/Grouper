@@ -1,22 +1,6 @@
 - model_class = Membership.new.class
-%h1=t '.title', :default => model_class.model_name.human.pluralize
-%table.table.table-striped
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:id)
-      %th= model_class.human_attribute_name(:group_id)
-      %th= model_class.human_attribute_name(:user_id)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @memberships.each do |membership|
-      %tr
-        %td= link_to membership.id, membership_path(membership)
-        %td= membership.group_id
-        %td= membership.user_id
-        %td=l membership.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_membership_path(membership), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), membership_path(membership), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
-
-= link_to t('.new', :default => t("helpers.links.new")), new_membership_path, :class => 'btn btn-primary'
+%h1=t '.title', :default => "My Groups"
+- @memberships.each do |membership|
+  .membership
+    %h3=membership.group.name
+    =link_to "View", group_path(membership.group)

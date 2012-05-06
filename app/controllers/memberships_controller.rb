@@ -1,4 +1,8 @@
 class MembershipsController < ApplicationController
+  def index
+    @memberships = Membership.where(:user_id => current_user.id)
+  end
+
   def show
     @membership = Membership.find(params[:id])
   end
