@@ -1,5 +1,11 @@
 Grouper::Application.routes.draw do
-  resources :user_sessions, :users, :groups, :memberships
+  resources :user_sessions, :users, :memberships
+
+  resources :groups do
+    collection do
+      get 'available'
+    end
+  end
 
   resource :account, :controller => 'users'
 

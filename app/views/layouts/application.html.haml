@@ -28,7 +28,7 @@
               - if current_user
                 %li= link_to "Create Group", new_group_path
                 %li= link_to "My Groups", memberships_path
-              %li= link_to "Link 3", "/path3"
+              %li= link_to "Find Groups", available_groups_path
             - if current_user
               = link_to "My Account", account_path
               = link_to "Sign Out", user_session_path(current_user), :method => :delete

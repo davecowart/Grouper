@@ -1,3 +1,3 @@
 - model_class = Group.new.class
-%h1=t '.title', :default => model_class.model_name.human.pluralize
+%h1=t '.title', :default => "Available Groups"
 = render :partial => 'group', :collection => @groups

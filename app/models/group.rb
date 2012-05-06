@@ -11,6 +11,10 @@ class Group < ActiveRecord::Base
 
   before_validation :update_slug
 
+  def self.available(user_id)
+    joins("left join memberships on groups.id = memberships.group_id and memberships.user_id = #{user_id}").where("memberships.id is null")
+  end
+
 private
 
   def update_slug

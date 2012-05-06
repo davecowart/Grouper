@@ -1,6 +1,12 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate, :only => [:available]
+
   def index
     @groups = Group.all
+  end
+
+  def available
+    @groups = Group.available(current_user.id)
   end
 
   def show
