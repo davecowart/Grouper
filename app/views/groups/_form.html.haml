@@ -1,5 +1,9 @@
 = simple_form_for @group, :html => { :class => 'form-horizontal' } do |f|
   = f.input :name
+  = f.input :parent_id, :collection => parent_groups, :label_method => :name, :value_method => :id, :prompt => "Select a parent group (optional)"
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), groups_path, :class => 'btn'
+- parent_groups.each do |pg|
+  .parent
+    = pg.name

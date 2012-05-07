@@ -15,6 +15,14 @@ class Group < ActiveRecord::Base
     joins("left join memberships on groups.id = memberships.group_id and memberships.user_id = #{user_id}").where("memberships.id is null")
   end
 
+  def self.find_by_admin_rights(user_id)
+    joins("left join memberships on groups.id = memberships.group_id", "left join roles on memberships.role_id = roles.id").where("roles.rank >= 10").where("memberships.user_id = ?", user_id)
+  end
+
+  def self.find_with_no_parent
+    where(parent_id: nil).order(:name)
+  end
+
 private
 
   def update_slug

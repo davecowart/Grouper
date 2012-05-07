@@ -15,7 +15,7 @@ private
 
   def is_group_admin(group_id)
     return false if current_user.nil?
-    Role.find_by_membership(group_id, current_user.id)
+    Role.find_by_membership(group_id, current_user.id).rank >= 10
   end
 
 protected

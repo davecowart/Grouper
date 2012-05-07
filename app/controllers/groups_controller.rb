@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
-  before_filter :authenticate, :only => [:available]
+  before_filter :authenticate, :except => [:show, :index]
 
   def index
-    @groups = Group.all
+    @groups = Group.find_with_no_parent
   end
 
   def available
@@ -18,24 +18,21 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @parent_groups = Group.find_with_no_parent.find_by_admin_rights(current_user.id)
   end
 
   def create
     @group = Group.new(params[:group])
-    Membership.transaction do
-      if @group.save
-        membership = Membership.new({:user => current_user, :group => @group})
-        membership.role_id = Role.find_by_name("GroupAdmin").id
-        if !membership.save
-          flash[:notice] = "Something went wrong"
-          render :action => :new
-          raise ActiveRecord::Rollback
-        end
-        flash[:notice] = "Group was created successfully"
-        redirect_to group_path(@group)
+    if @group.save
+      membership = Membership.new(user_id: current_user.id, group_id: @group.id)
+      membership.role_id = Role.find_by_name("GroupAdmin").id
+      if membership.save
+        redirect_to group_path(@group), :notice => "Group was created successfully"
       else
-        render :action => :new
+        flash[:notice] = "Something went wrong"
       end
+    else
+      render :action => :new
     end
   end
 

@@ -7,5 +7,5 @@ class Membership < ActiveRecord::Base
   validates_uniqueness_of :group_id, :scope => :user_id
 
   attr_accessible :group_id, :user_id, :group, :user
-  attr_accessor :role_id
+  attr_protected :role_id
 end
